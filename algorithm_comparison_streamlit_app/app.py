@@ -1,8 +1,10 @@
 # Basic App Setup
+import os
 import streamlit as st
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -18,7 +20,10 @@ st.write("Compare multiple machine learning algorithms on HR Attrition data")
 # Load Dataset
 @st.cache_data
 def load_data():
-    return pd.read_csv("HR-Employee-Attrition_updated.csv")
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(base_dir, "HR-Employee-Attrition_updated.csv")
+    return pd.read_csv(file_path)
+
 
 df = load_data()
 st.subheader("📄 Dataset Preview")
